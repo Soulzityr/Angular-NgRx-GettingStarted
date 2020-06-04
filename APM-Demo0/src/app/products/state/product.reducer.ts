@@ -24,6 +24,16 @@ export const getShowProductCode = createSelector(
     state => state.showProductCode
 );
 
+export const getCurrentProduct = createSelector(
+    getProductFeatureState,
+    state => state.currentProduct
+)
+
+export const getProducts = createSelector(
+    getProductFeatureState,
+    state => state.products
+);
+
 export function reducer(state = initialState, action) :ProductState {
     switch(action.type){
         
