@@ -10,7 +10,7 @@ export interface ProductState {
     products: Product[];
 }
 
-export function reducer(state, action) {
+export function reducer(state: ProductState, action) :ProductState {
     switch(action.type){
         
         case 'TOGGLE_PRODUCT_CODE':
