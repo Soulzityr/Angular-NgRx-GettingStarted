@@ -34,7 +34,7 @@ export const getProducts = createSelector(
     state => state.products
 );
 
-export function reducer(state = initialState, action) :ProductState {
+export function reducer(state = initialState, action): ProductState {
     switch(action.type){
         
         case 'TOGGLE_PRODUCT_CODE':
