@@ -1,5 +1,6 @@
-import { Store } from '@ngrx/store';
+import { Store, createFeatureSelector, createSelector } from '@ngrx/store';
 import * as fromRoot from '../../state/app.state'
+import { User } from '../user';
 
 export interface State extends fromRoot.State {
     users: UserState
@@ -7,14 +8,22 @@ export interface State extends fromRoot.State {
 
 export interface UserState {
     maskUserName: boolean;
+    currentUser: User
 }
 
 const initialState: UserState = {
-    maskUserName: true
+    maskUserName: true,
+    currentUser: null
 }
 
+const getUserFeatureState = createFeatureSelector<UserState>('users');
 
-export function userReducer(state = initialState, action) {
+export const getMaskUserName = createSelector(
+    getUserFeatureState,
+    state => state.maskUserName
+)
+
+export function userReducer(state = initialState, action): UserState {
     switch(action.type){
         
         case 'TOGGLE_MASK_USERNAME':
