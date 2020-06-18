@@ -64,7 +64,7 @@ export function reducer(state = initialState, action: ProductActions): ProductSt
         
         case ProductActionTypes.ToggleProductCode:
             console.log("Old State: " + JSON.stringify(state));
-            console.log("payload: " + action.payload)
+            console.log("payload: " + action.payload);
             return {
                 ...state,
                 showProductCode: action.payload
@@ -94,6 +94,19 @@ export function reducer(state = initialState, action: ProductActions): ProductSt
             return {
                 ...state,
                 products: [],
+                error: action.payload
+            }
+        case ProductActionTypes.UpdateProductSuccess:
+            const updatedProducts = state.products.map(item => action.payload.id === item.id ? action.payload : item);
+            return {
+                ...state,
+                products: updatedProducts,
+                currentProductId: action.payload.id,
+                error: ''
+            }
+        case ProductActionTypes.UpdateProductFail:
+            return {
+                ...state,
                 error: action.payload
             }
         default:
